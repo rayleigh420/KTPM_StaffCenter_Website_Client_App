@@ -1,0 +1,5 @@
+.custom-nav-link:hover {
+    text-decoration: underline; /* Thêm gạch chân */
+    color: blue !important; /* Đổi màu */ 
+    font-weight: 700;
+  }
