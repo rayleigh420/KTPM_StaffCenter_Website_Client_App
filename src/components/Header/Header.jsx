@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -133,15 +133,30 @@ function Header() {
 							style={{ maxHeight: '100px' }}
 							navbarScroll
 						>
-							<Nav.Link href="receive" className="custom-nav-link text-xl text-dark">
-								Receive
-							</Nav.Link>
-							<Nav.Link href="locate" className="custom-nav-link text-lg text-dark">
-								Locate
-							</Nav.Link>
-							<Nav.Link href="status" className="custom-nav-link text-lg text-dark">
-								Status
-							</Nav.Link>
+							<Link to={'/receive'}>
+								<Nav.Link
+									href="receive"
+									className="custom-nav-link text-xl text-dark"
+								>
+									Receive
+								</Nav.Link>
+							</Link>
+							<Link to={'/locate'}>
+								<Nav.Link
+									href="locate"
+									className="custom-nav-link text-lg text-dark"
+								>
+									Locate
+								</Nav.Link>
+							</Link>
+							<Link to={'/status'}>
+								<Nav.Link
+									href="status"
+									className="custom-nav-link text-lg text-dark"
+								>
+									Status
+								</Nav.Link>
+							</Link>
 						</Nav>
 						<Form className="d-flex">
 							<Form.Control

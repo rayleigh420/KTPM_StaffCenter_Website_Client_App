@@ -117,6 +117,34 @@ function Receive() {
 	const [bottom, setBottom] = useState('bottomRight');
 	const [page, setPage] = useState(1);
 
+	const [phone, setPhone] = useState('');
+	const [name, setName] = useState('');
+	const [sourceAddress, setSourceAddress] = useState('');
+	const [targetAddress, setTargetAddress] = useState('');
+
+	const handleChangePhone = (e) => {
+		setPhone(e.target.value);
+	};
+
+	const handleChangeName = (e) => {
+		setName(e.target.value);
+	};
+
+	const handleChangeSourceAddress = (e) => {
+		setSourceAddress(e.target.value);
+	};
+
+	const handleChangeTargetAddress = (e) => {
+		setTargetAddress(e.target.value);
+	};
+
+	const handleClickNext = () => {
+		console.log(phone, name, sourceAddress, targetAddress);
+	};
+
+	const handleClickBook = () => {
+		console.log(phone, name, sourceAddress, targetAddress);
+	};
 	return (
 		<>
 			{/* Erorr Center CSS not working !  */}
@@ -133,10 +161,11 @@ function Receive() {
 									Số điện thoại
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="+84 38 91 93 100"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									onChange={(e) => handleChangePhone(e)}
 								/>
 							</Form.Group>
 
@@ -148,10 +177,11 @@ function Receive() {
 									Họ và tên
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="Nguyễn Văn Nam"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									onChange={(e) => handleChangeName(e)}
 								/>
 							</Form.Group>
 
@@ -178,10 +208,11 @@ function Receive() {
 									Địa chỉ đón
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="Số 5 Đồ Sơn, phường 04, quận Tân Bình"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									onChange={(e) => handleChangeSourceAddress(e)}
 								/>
 							</Form.Group>
 
@@ -208,10 +239,11 @@ function Receive() {
 									Địa chỉ đến
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="227 Nguyễn Văn Cừ, phường 04, quận 05"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									onChange={(e) => handleChangeTargetAddress(e)}
 								/>
 							</Form.Group>
 
@@ -247,6 +279,7 @@ function Receive() {
 									icon={<ExportOutlined />}
 									style={{ display: 'flex', alignItems: 'center' }}
 									size="large"
+									onClick={() => handleClickNext()}
 								>
 									Chuyển tiếp
 								</Button>
@@ -255,6 +288,7 @@ function Receive() {
 									icon={<AimOutlined />}
 									style={{ display: 'flex', alignItems: 'center' }}
 									size="large"
+									onClick={() => handleClickBook()}
 								>
 									Đặt xe
 								</Button>
