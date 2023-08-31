@@ -54,7 +54,6 @@ const data = [
 		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
 		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
 	},
-	,
 	{
 		stt: '2',
 		time: '18/08/2023',
@@ -73,7 +72,6 @@ const data = [
 		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
 		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
 	},
-	,
 	{
 		stt: '2',
 		time: '18/08/2023',
@@ -92,7 +90,6 @@ const data = [
 		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
 		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
 	},
-	,
 	{
 		stt: '2',
 		time: '18/08/2023',
