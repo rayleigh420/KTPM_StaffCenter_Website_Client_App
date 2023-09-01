@@ -3,8 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import './style.css';
 import { Button, Space } from 'antd';
-import { AimOutlined, ExportOutlined } from '@ant-design/icons';
+import { AimOutlined, CloseSquareFilled, ExportOutlined } from '@ant-design/icons';
 import { Table, Tag } from 'antd';
+import { useMutation } from '@tanstack/react-query';
+import { getCoordinates } from '../../apis/mapAPI';
+import { bookDirect } from '../../apis/bookAPI';
 
 const columns = [
 	{
@@ -111,13 +114,63 @@ const data = [
 ];
 
 function Receive() {
-	const [bottom, setBottom] = useState('bottomRight');
+	// const [bottom, setBottom] = useState('bottomRight');
 	const [page, setPage] = useState(1);
 
 	const [phone, setPhone] = useState('');
 	const [name, setName] = useState('');
 	const [sourceAddress, setSourceAddress] = useState('');
 	const [targetAddress, setTargetAddress] = useState('');
+	const [type, setType] = useState('');
+
+	const [sourceCoor, setSourceCoor] = useState({});
+	const [targetCoor, setTargetCoor] = useState({});
+
+	const sourceAddressMutation = useMutation({
+		mutationKey: ['coordinate', sourceAddress],
+		mutationFn: (sourceAddress) => getCoordinates(sourceAddress),
+		onSuccess: (data) => {
+			console.log(data);
+			setSourceCoor(data);
+			targetAddressMutation.mutate(targetAddress);
+		},
+		onError: (err) => {
+			console.log(err);
+		},
+	});
+
+	const targetAddressMutation = useMutation({
+		mutationKey: ['coordinate', targetAddress],
+		mutationFn: (targetAddress) => getCoordinates(targetAddress),
+		onSuccess: (data) => {
+			console.log(data);
+			setTargetCoor(data);
+			bookDirectMutation.mutate({
+				customer: {
+					id: 1,
+					phoneNumber: phone,
+					name: name,
+				},
+				pickup: sourceCoor,
+				destination: targetCoor,
+				vehicleType: type,
+			});
+		},
+		onError: (err) => {
+			console.log(err);
+		},
+	});
+
+	const bookDirectMutation = useMutation({
+		mutationKey: ['book', phone, name, sourceCoor, targetCoor, type],
+		mutationFn: (info) => bookDirect(info),
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		onError: (err) => {
+			console.log(err);
+		},
+	});
 
 	const handleChangePhone = (e) => {
 		setPhone(e.target.value);
@@ -135,13 +188,22 @@ function Receive() {
 		setTargetAddress(e.target.value);
 	};
 
+	const handleChangeType = (e) => {
+		console.log(e.target.value);
+		setType(e.target.value);
+	};
+
 	const handleClickNext = () => {
 		console.log(phone, name, sourceAddress, targetAddress);
 	};
 
 	const handleClickBook = () => {
 		console.log(phone, name, sourceAddress, targetAddress);
+		if (phone != '' && name != '' && sourceAddress != '' && targetAddress != '' && type != '') {
+			sourceAddressMutation.mutate(sourceAddress);
+		}
 	};
+
 	return (
 		<>
 			{/* Erorr Center CSS not working !  */}
@@ -264,9 +326,14 @@ function Receive() {
 								style={{ paddingLeft: '12px' }}
 							>
 								<Form.Label className="fw-bold">Loại xe</Form.Label>
-								<Form.Check type="radio" label="Xe máy" name="carType" />
-								<Form.Check type="radio" label="Xe 4 chỗ" name="carType" />
-								<Form.Check type="radio" label="Xe 7 chỗ" name="carType" />
+								<Form.Select
+									aria-label="Default select example"
+									onChange={(e) => handleChangeType(e)}
+								>
+									<option value="">Chọn loại xe</option>
+									<option value="motorbike">Xe máy</option>
+									<option value="car">Xe hơi</option>
+								</Form.Select>
 							</Form.Group>
 
 							<div className="mt-5 d-flex justify-content-between">
