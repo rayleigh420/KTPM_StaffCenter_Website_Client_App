@@ -5,9 +5,10 @@ import './style.css';
 import { Button, Space } from 'antd';
 import { AimOutlined, CloseSquareFilled, ExportOutlined } from '@ant-design/icons';
 import { Table, Tag } from 'antd';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCoordinates } from '../../apis/mapAPI';
-import { bookDirect } from '../../apis/bookAPI';
+import { bookDirect, getHistory } from '../../apis/bookAPI';
+import useDebounce from '../../hooks/useDebounce';
 
 const columns = [
 	{
@@ -126,6 +127,9 @@ function Receive() {
 	const [sourceCoor, setSourceCoor] = useState({});
 	const [targetCoor, setTargetCoor] = useState({});
 
+	const debounceValue = useDebounce(phone, 3000);
+	console.log(debounceValue);
+
 	const sourceAddressMutation = useMutation({
 		mutationKey: ['coordinate', sourceAddress],
 		mutationFn: (sourceAddress) => getCoordinates(sourceAddress),
@@ -170,6 +174,15 @@ function Receive() {
 		onError: (err) => {
 			console.log(err);
 		},
+	});
+
+	const {
+		data: history,
+		isLoading,
+		isError,
+	} = useQuery({
+		queryKey: ['history', debounceValue],
+		queryFn: () => getHistory(debounceValue),
 	});
 
 	const handleChangePhone = (e) => {
