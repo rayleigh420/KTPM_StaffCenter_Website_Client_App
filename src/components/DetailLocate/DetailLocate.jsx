@@ -1,17 +1,30 @@
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Map from './Map';
+import { QueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 export default function DetailLocate() {
+	const { id } = useParams();
 
+	const [phone, setPhone] = useState('');
+	const [name, setName] = useState('');
+	const [start, setStart] = useState('');
+	const [end, setEnd] = useState('');
 
+	useEffect(() => {
+		console.log('firsHelt');
+		const queryClient = new QueryClient();
+		const data = queryClient.getQueryData(['waiting']);
+		console.log(data);
+	}, []);
 
 	return (
 		<>
-			<Container style={{marginTop: '120px'}}>
+			<Container style={{ marginTop: '120px' }}>
 				<Row>
 					<Col>
 						<Form
@@ -28,7 +41,8 @@ export default function DetailLocate() {
 									Số điện thoại
 								</Form.Label>
 								<Form.Control
-									type="email"
+									// value={}
+									type="text"
 									placeholder="+84 38 91 93 100"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
@@ -43,7 +57,7 @@ export default function DetailLocate() {
 									Họ và tên
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="Nguyễn Văn Nam"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
@@ -73,7 +87,7 @@ export default function DetailLocate() {
 									Địa chỉ đón
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="Số 5 Đồ Sơn, phường 04, quận Tân Bình"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
@@ -103,14 +117,17 @@ export default function DetailLocate() {
 									Địa chỉ đến
 								</Form.Label>
 								<Form.Control
-									type="email"
+									type="text"
 									placeholder="227 Nguyễn Văn Cừ, phường 04, quận 05"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
 								/>
 							</Form.Group>
 
-							<Container className="mt-5" style={{display: 'flex', justifyContent: 'center', }}>
+							<Container
+								className="mt-5"
+								style={{ display: 'flex', justifyContent: 'center' }}
+							>
 								<Button variant="warning">Check</Button>
 							</Container>
 						</Form>
@@ -121,8 +138,7 @@ export default function DetailLocate() {
 							<h1>SHOW MAP</h1>
 						</div>
 
-                        <Map />
-
+						<Map />
 					</Col>
 				</Row>
 			</Container>

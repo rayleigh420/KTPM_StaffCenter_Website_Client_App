@@ -99,7 +99,7 @@ export default function Locate() {
 		queryFn: () => getAllWaiting(),
 	});
 
-	console.log(waitingList);
+	// console.log(waitingList);
 
 	return (
 		<>
@@ -115,7 +115,7 @@ export default function Locate() {
 							<FaClock className="spin-icon mx-2" size={30} />
 							<Card.Body>
 								<Card.Title>Chờ định vị</Card.Title>
-								<Card.Text>1000 lượt</Card.Text>
+								<Card.Text>{waitingList?.length}</Card.Text>
 							</Card.Body>
 						</Card>
 					</Col>

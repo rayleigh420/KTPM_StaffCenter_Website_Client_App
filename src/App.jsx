@@ -13,7 +13,7 @@ function App() {
 				<Route path="/" element={<Receive />} />
 				<Route path="/receive" element={<Receive />} />
 				<Route path="/locate" element={<Locate />} />
-				<Route path="/detailLocate" element={<DetailLocate />} />
+				<Route path="/detailLocate/:id" element={<DetailLocate />} />
 				<Route path="/status" element={<Status />} />
 			</Routes>
 
