@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 import { AimOutlined, ExportOutlined, SearchOutlined } from '@ant-design/icons';
 import { Table, Tag } from 'antd';
+import { useQuery } from '@tanstack/react-query';
+import { getAllWaiting } from '../../apis/bookAPI';
 
 const columns = [
 	{
@@ -85,8 +87,19 @@ export default function Locate() {
 	// 	{ id: 5, time: '09:30 PM', phoneNumber: '+84 111 222 333', check: 'Kiểm tra' },
 	// ]);
 
-	const [bottom, setBottom] = useState('bottomRight');
+	// const [bottom, setBottom] = useState('bottomRight');
 	const [page, setPage] = useState(1);
+
+	const {
+		data: waitingList,
+		isLoading,
+		isError,
+	} = useQuery({
+		queryKey: ['waiting'],
+		queryFn: () => getAllWaiting(),
+	});
+
+	console.log(waitingList);
 
 	return (
 		<>
@@ -154,7 +167,7 @@ export default function Locate() {
 
 						<Table
 							columns={columns}
-							dataSource={data}
+							dataSource={waitingList}
 							pagination={{
 								current: page,
 								pageSize: 5,
