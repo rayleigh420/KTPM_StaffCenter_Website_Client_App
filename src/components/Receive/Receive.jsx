@@ -182,8 +182,21 @@ function Receive() {
 		isError,
 	} = useQuery({
 		queryKey: ['history', debounceValue],
-		queryFn: () => getHistory(debounceValue),
+		queryFn: () => {
+			if (debounceValue.length >= 10) {
+				return getHistory({
+					phoneNumber: debounceValue,
+				});
+			}
+		},
 	});
+
+	// const {data: hisoryAddress} = useQuery({
+	//     queryKey: ["history", "address", history],
+	//     queryFn: () => {
+
+	//     }
+	// })
 
 	const handleChangePhone = (e) => {
 		setPhone(e.target.value);
@@ -216,6 +229,8 @@ function Receive() {
 			sourceAddressMutation.mutate(sourceAddress);
 		}
 	};
+
+	console.log(history);
 
 	return (
 		<>
