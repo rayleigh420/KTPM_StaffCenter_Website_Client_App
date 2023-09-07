@@ -7,7 +7,7 @@ import { AimOutlined, CloseSquareFilled, ExportOutlined } from '@ant-design/icon
 import { Table, Tag } from 'antd';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCoordinates } from '../../apis/mapAPI';
-import { bookDirect, getHistory } from '../../apis/bookAPI';
+import { bookDirect, createBooking, getHistory } from '../../apis/bookAPI';
 import useDebounce from '../../hooks/useDebounce';
 
 const columns = [
@@ -111,6 +111,17 @@ function Receive() {
 		},
 	});
 
+	const creatBookingMutate = useMutation({
+		mutationKey: ['createBooking', phone, name, sourceAddress, targetAddress, type],
+		mutationFn: (data) => createBooking(data),
+		onSuccess: (data) => {
+			console.log(data);
+		},
+		onError: (err) => {
+			console.log(err);
+		},
+	});
+
 	// const {data: hisoryAddress} = useQuery({
 	//     queryKey: ["history", "address", history],
 	//     queryFn: () => {
@@ -141,6 +152,13 @@ function Receive() {
 
 	const handleClickNext = () => {
 		console.log(phone, name, sourceAddress, targetAddress);
+		createBooking.mutate({
+			phoneNumber: phone,
+			customerName: name,
+			pickupAddress: sourceAddress,
+			destAddress: targetAddress,
+			time: new Date(),
+		});
 	};
 
 	const handleClickBook = () => {

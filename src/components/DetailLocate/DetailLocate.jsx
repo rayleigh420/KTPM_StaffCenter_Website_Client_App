@@ -61,16 +61,6 @@ export default function DetailLocate() {
 			console.log('Target: ', data);
 			setTargetCoor(data);
 			setModal(true);
-			// bookDirectMutation.mutate({
-			// 	customer: {
-			// 		id: 1,
-			// 		phoneNumber: phone,
-			// 		name: name,
-			// 	},
-			// 	pickup: sourceCoor,
-			// 	destination: targetCoor,
-			// 	vehicleType: type,
-			// });
 		},
 		onError: (err) => {
 			console.log(err);
@@ -136,21 +126,6 @@ export default function DetailLocate() {
 								/>
 							</Form.Group>
 
-							{/* <Form.Group
-								className="p-2 mb-3 border-1  pb-2 bg-light rounded"
-								controlId="fullName"
-							>
-								<Form.Label className="fw-bold" style={{ marginLeft: '12px' }}>
-									Họ và tên
-								</Form.Label>
-								<Form.Control
-									type="email"
-									placeholder="+84 38 91 93 100"
-									className="border-0 p-1 ml-1 w-auto"
-									style={{ marginLeft: '12px', width: '99%' }}
-								/>
-							</Form.Group> */}
-
 							<Form.Group
 								className="p-2 mb-3 border-1  pb-2 bg-light rounded w-auto"
 								controlId="pickupAddress"
@@ -166,21 +141,6 @@ export default function DetailLocate() {
 									style={{ marginLeft: '12px', width: '99%' }}
 								/>
 							</Form.Group>
-
-							{/* <Form.Group
-								className="p-2 mb-3 border-1  pb-2 bg-light rounded"
-								controlId="pickupAddress"
-							>
-								<Form.Label className="fw-bold" style={{ marginLeft: '12px' }}>
-									Địa điểm đón
-								</Form.Label>
-								<Form.Control
-									type="email"
-									placeholder="+84 38 91 93 100"
-									className="border-0 p-1 ml-1 w-auto"
-									style={{ marginLeft: '12px', width: '99%' }}
-								/>
-							</Form.Group> */}
 
 							<Form.Group
 								className="p-2 mb-3 border-1  pb-2 bg-light rounded w-auto"
@@ -221,8 +181,6 @@ export default function DetailLocate() {
 			<Modal
 				title="Verify information"
 				open={modal}
-				// onOk={handleOk}
-				// confirmLoading={confirmLoading}
 				onCancel={() => setModal(false)}
 				footer={[
 					<Button

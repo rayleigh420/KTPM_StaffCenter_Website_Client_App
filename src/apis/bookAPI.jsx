@@ -52,3 +52,8 @@ export const getDetailBookingPosition = async (id) => {
 	console.log(result.data);
 	return result.data.data;
 };
+
+export const createBooking = async (data) => {
+	const result = await axios.post('booking/createPosition', data);
+	return result.data;
+};
