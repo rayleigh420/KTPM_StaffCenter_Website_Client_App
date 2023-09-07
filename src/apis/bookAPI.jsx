@@ -30,6 +30,7 @@ export const getHistory = async (phone) => {
 
 export const getAllWaiting = async () => {
 	const result = await axios.get('/booking/getBookingPositions');
+	console.log(result.data);
 	const waiting = result.data.data?.map((item, index) => {
 		return {
 			stt: index + 1,
@@ -37,11 +38,17 @@ export const getAllWaiting = async () => {
 			phoneNumber: item.phoneNumber,
 			status: (
 				<Button>
-					<Link to={`/detailLocate/${index}`}>Kiem tra</Link>
+					<Link to={`/detailLocate/${item.bookingPositionId}`}>Kiem tra</Link>
 				</Button>
 			),
 		};
 	});
 
 	return waiting;
+};
+
+export const getDetailBookingPosition = async (id) => {
+	const result = await axios.get(`/booking/getBookingPositionById?bookingPositionId=${id}`);
+	console.log(result.data);
+	return result.data.data;
 };

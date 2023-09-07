@@ -33,86 +33,6 @@ const columns = [
 		dataIndex: 'destinationAddress',
 	},
 ];
-const data = [
-	{
-		stt: '1',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '2',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '3',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '4',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '2',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '3',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '4',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '2',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '3',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '4',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '2',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '3',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-	{
-		stt: '4',
-		time: '18/08/2023',
-		pickupAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-		destinationAddress: 'So 5 Do Son street, 4 ward, Tan Binh district',
-	},
-];
 
 function Receive() {
 	// const [bottom, setBottom] = useState('bottomRight');
@@ -128,7 +48,7 @@ function Receive() {
 	const [targetCoor, setTargetCoor] = useState({});
 
 	const debounceValue = useDebounce(phone, 3000);
-	console.log(debounceValue);
+	// console.log(debounceValue);
 
 	const sourceAddressMutation = useMutation({
 		mutationKey: ['coordinate', sourceAddress],
@@ -230,7 +150,7 @@ function Receive() {
 		}
 	};
 
-	console.log(history);
+	// console.log(history);
 
 	return (
 		<>
@@ -413,7 +333,7 @@ function Receive() {
 						</Table> */}
 						<Table
 							columns={columns}
-							dataSource={data}
+							// dataSource={}
 							pagination={{
 								current: page,
 								pageSize: 5,
