@@ -100,11 +100,7 @@ function Receive() {
 		},
 	});
 
-	const {
-		data: history,
-		isLoading,
-		isError,
-	} = useQuery({
+	const { data: history } = useQuery({
 		queryKey: ['history', debounceValue],
 		queryFn: () => {
 			if (debounceValue.length >= 10) {
@@ -133,13 +129,6 @@ function Receive() {
 			toast.error('Something wrong. Please try again!');
 		},
 	});
-
-	// const {data: hisoryAddress} = useQuery({
-	//     queryKey: ["history", "address", history],
-	//     queryFn: () => {
-
-	//     }
-	// })
 
 	const handleChangePhone = (e) => {
 		setPhone(e.target.value);
@@ -205,7 +194,7 @@ function Receive() {
 								</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder="+84 38 91 93 100"
+									placeholder="Vui lòng điền SDT"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
 									onChange={(e) => handleChangePhone(e)}
@@ -221,7 +210,7 @@ function Receive() {
 								</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder="Nguyễn Văn Nam"
+									placeholder="Vui lòng điền họ và tên đầy đủ"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
 									onChange={(e) => handleChangeName(e)}
@@ -252,7 +241,7 @@ function Receive() {
 								</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder="Số 5 Đồ Sơn, phường 04, quận Tân Bình"
+									placeholder="Vui lòng điền địa chỉ đón"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
 									onChange={(e) => handleChangeSourceAddress(e)}
@@ -283,7 +272,7 @@ function Receive() {
 								</Form.Label>
 								<Form.Control
 									type="text"
-									placeholder="227 Nguyễn Văn Cừ, phường 04, quận 05"
+									placeholder="Vui lòng điện địa chỉ đến"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
 									onChange={(e) => handleChangeTargetAddress(e)}
