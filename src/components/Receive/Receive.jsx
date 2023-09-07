@@ -9,6 +9,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCoordinates } from '../../apis/mapAPI';
 import { bookDirect, createBooking, getHistory } from '../../apis/bookAPI';
 import useDebounce from '../../hooks/useDebounce';
+import { toast } from 'react-toastify';
 
 const columns = [
 	{
@@ -60,6 +61,7 @@ function Receive() {
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
@@ -82,6 +84,7 @@ function Receive() {
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
@@ -93,6 +96,7 @@ function Receive() {
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
@@ -116,9 +120,17 @@ function Receive() {
 		mutationFn: (data) => createBooking(data),
 		onSuccess: (data) => {
 			console.log(data);
+			toast.success('Chuyển tiếp thành công!');
+			setName('');
+			setPhone('');
+			setSourceAddress('');
+			setTargetAddress('');
+			setSourceCoor('');
+			setTargetCoor('');
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
@@ -152,23 +164,29 @@ function Receive() {
 
 	const handleClickNext = () => {
 		console.log(phone, name, sourceAddress, targetAddress);
-		createBookingMutate.mutate({
-			phoneNumber: phone,
-			customerName: name,
-			pickupAddress: sourceAddress,
-			destAddress: targetAddress,
-			time: new Date(),
-		});
+		if (phone != '' && name != '' && sourceAddress != '' && targetAddress != '' && type != '') {
+			createBookingMutate.mutate({
+				phoneNumber: phone,
+				customerName: name,
+				pickupAddress: sourceAddress,
+				destAddress: targetAddress,
+				time: new Date(),
+			});
+		} else {
+			toast.warn('Please fill all the field!');
+		}
 	};
 
 	const handleClickBook = () => {
 		console.log(phone, name, sourceAddress, targetAddress);
 		if (phone != '' && name != '' && sourceAddress != '' && targetAddress != '' && type != '') {
 			sourceAddressMutation.mutate(sourceAddress);
+		} else {
+			toast.warn('Please fill all the field!');
 		}
 	};
 
-	// console.log(history);
+	console.log(history);
 
 	return (
 		<>
@@ -351,7 +369,7 @@ function Receive() {
 						</Table> */}
 						<Table
 							columns={columns}
-							// dataSource={}
+							dataSource={history}
 							pagination={{
 								current: page,
 								pageSize: 5,

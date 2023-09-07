@@ -12,20 +12,32 @@ export const getHistory = async (phone) => {
 	const result = await axios.post('booking/getLocations', phone);
 	const history = [];
 
-	result.data = result?.data?.map(async (item) => {
-		const startAddress = await getAddress(item.startLocation);
-		const endAddress = await getAddress(item.endLocation);
+	const getAllAddress = async () => {
+		let i = 0;
+		for (const item of result.data) {
+			const startAddressPromise = getAddress(item.startLocation);
+			const endAddressPromise = getAddress(item.endLocation);
 
-		history.push({
-			startAddress: startAddress,
-			endAddressd: endAddress,
-		});
-		console.log(startAddress, endAddress);
-		return { ...item, startAddress, endAddress };
-	});
+			const [startAddress, endAddress] = await Promise.all([
+				startAddressPromise,
+				endAddressPromise,
+			]);
 
-	// await Promise.all(getAllAddress)
-	return result.data;
+			history.push({
+				stt: i + 1,
+				time: new Date(),
+				pickupAddress: startAddress,
+				destinationAddress: endAddress,
+			});
+			i++;
+		}
+	};
+
+	await getAllAddress();
+
+	// await getAllAddress();
+
+	return history;
 };
 
 export const getAllWaiting = async () => {

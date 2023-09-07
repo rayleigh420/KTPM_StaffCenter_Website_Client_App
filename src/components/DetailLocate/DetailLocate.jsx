@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { bookDirect, getDetailBookingPosition } from '../../apis/bookAPI';
 import { getCoordinates } from '../../apis/mapAPI';
 import { Modal } from 'antd';
+import { toast } from 'react-toastify';
 
 export default function DetailLocate() {
 	const { id } = useParams();
@@ -51,6 +52,7 @@ export default function DetailLocate() {
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
@@ -64,6 +66,7 @@ export default function DetailLocate() {
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
@@ -80,6 +83,7 @@ export default function DetailLocate() {
 		},
 		onError: (err) => {
 			console.log(err);
+			toast.error('Something wrong. Please try again!');
 		},
 	});
 
