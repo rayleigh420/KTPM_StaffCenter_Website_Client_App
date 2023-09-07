@@ -111,7 +111,7 @@ function Receive() {
 		},
 	});
 
-	const creatBookingMutate = useMutation({
+	const createBookingMutate = useMutation({
 		mutationKey: ['createBooking', phone, name, sourceAddress, targetAddress, type],
 		mutationFn: (data) => createBooking(data),
 		onSuccess: (data) => {
@@ -152,7 +152,7 @@ function Receive() {
 
 	const handleClickNext = () => {
 		console.log(phone, name, sourceAddress, targetAddress);
-		createBooking.mutate({
+		createBookingMutate.mutate({
 			phoneNumber: phone,
 			customerName: name,
 			pickupAddress: sourceAddress,
