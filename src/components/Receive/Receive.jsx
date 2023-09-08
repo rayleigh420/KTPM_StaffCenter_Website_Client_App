@@ -72,14 +72,12 @@ function Receive() {
 			console.log(data);
 			setTargetCoor(data);
 			bookDirectMutation.mutate({
-				customer: {
-					id: 1,
-					phoneNumber: phone,
-					name: name,
-				},
+				phoneNumber: phone,
 				pickup: sourceCoor,
 				destination: targetCoor,
+				price: '100000',
 				vehicleType: type,
+				paymentMethod: 'cash',
 			});
 		},
 		onError: (err) => {
@@ -93,6 +91,13 @@ function Receive() {
 		mutationFn: (info) => bookDirect(info),
 		onSuccess: (data) => {
 			console.log(data);
+			toast.success('Booking success!');
+			setName('');
+			setPhone('');
+			setSourceAddress('');
+			setTargetAddress('');
+			setSourceCoor('');
+			setTargetCoor('');
 		},
 		onError: (err) => {
 			console.log(err);

@@ -4,7 +4,7 @@ import { getAddress } from './mapAPI';
 import { Link } from 'react-router-dom';
 
 export const bookDirect = async (data) => {
-	const result = await axios.post('/booking/request-ride', data);
+	const result = await axios.post('/booking/createBooking', data);
 	return result.data;
 };
 

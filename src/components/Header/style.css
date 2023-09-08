@@ -1,5 +1,10 @@
 .custom-nav-link:hover {
-    text-decoration: underline; /* Thêm gạch chân */
-    color: blue !important; /* Đổi màu */ 
+    /* text-decoration: underline; Thêm gạch chân */
+
+    /* Đổi màu */
     font-weight: 700;
-  }
+}
+
+a {
+    text-decoration: none;
+}

@@ -135,30 +135,15 @@ function Header() {
 							style={{ maxHeight: '100px' }}
 							navbarScroll
 						>
-							<NavLink to={'/receive'}>
-								<Nav.Link
-									href="receive"
-									className="custom-nav-link text-xl text-dark"
-								>
-									Receive
-								</Nav.Link>
-							</NavLink>
-							<NavLink to={'/locate'}>
-								<Nav.Link
-									href="locate"
-									className="custom-nav-link text-lg text-dark"
-								>
-									Locate
-								</Nav.Link>
-							</NavLink>
-							<NavLink to={'/status'}>
-								<Nav.Link
-									href="status"
-									className="custom-nav-link text-lg text-dark"
-								>
-									Status
-								</Nav.Link>
-							</NavLink>
+							<Nav.Link className="custom-nav-link text-xl text-dark">
+								<NavLink to={'/receive'}>Receive</NavLink>
+							</Nav.Link>
+							<Nav.Link className="custom-nav-link text-lg text-dark">
+								<NavLink to={'/locate'}>Locate</NavLink>
+							</Nav.Link>
+							<Nav.Link className="custom-nav-link text-lg text-dark">
+								<NavLink to={'/status'}>Status</NavLink>
+							</Nav.Link>
 						</Nav>
 						<Form className="d-flex">
 							<Form.Control
