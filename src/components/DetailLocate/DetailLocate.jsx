@@ -80,6 +80,7 @@ export default function DetailLocate() {
 		mutationFn: (info) => bookDirect(info),
 		onSuccess: (data) => {
 			console.log(data);
+			toast.success('Booking success!');
 		},
 		onError: (err) => {
 			console.log(err);
@@ -191,14 +192,12 @@ export default function DetailLocate() {
 						key="Book"
 						onClick={() =>
 							bookDirectMutation.mutate({
-								customer: {
-									id: 1,
-									phoneNumber: detail?.phoneNumber,
-									name: detail?.customerName,
-								},
+								phoneNumber: detail?.phoneNumber,
 								pickup: sourceCoor,
 								destination: targetCoor,
+								price: '100000',
 								vehicleType: 'motorbike',
+								paymentMethod: 'cash',
 							})
 						}
 					>
