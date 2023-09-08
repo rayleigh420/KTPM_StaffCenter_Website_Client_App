@@ -111,9 +111,9 @@ export default function DetailLocate() {
 								<Form.Control
 									value={detail?.phoneNumber}
 									type="text"
-									placeholder="+84 38 91 93 100"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									disabled
 								/>
 							</Form.Group>
 
@@ -127,9 +127,9 @@ export default function DetailLocate() {
 								<Form.Control
 									value={detail?.customerName}
 									type="text"
-									placeholder="Nguyễn Văn Nam"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									disabled
 								/>
 							</Form.Group>
 
@@ -143,9 +143,9 @@ export default function DetailLocate() {
 								<Form.Control
 									value={detail?.pickupAddress}
 									type="text"
-									placeholder="Số 5 Đồ Sơn, phường 04, quận Tân Bình"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									disabled
 								/>
 							</Form.Group>
 
@@ -159,9 +159,25 @@ export default function DetailLocate() {
 								<Form.Control
 									value={detail?.destAddress}
 									type="text"
-									placeholder="227 Nguyễn Văn Cừ, phường 04, quận 05"
 									className="border-0 p-1 ml-1"
 									style={{ marginLeft: '12px', width: '99%' }}
+									disabled
+								/>
+							</Form.Group>
+
+							<Form.Group
+								className="p-2 mb-3 border-1  pb-2 bg-light rounded w-auto"
+								controlId="destinationAddress"
+							>
+								<Form.Label className="fw-bold" style={{ marginLeft: '12px' }}>
+									Loại xe
+								</Form.Label>
+								<Form.Control
+									value={detail?.vehicleType || 'motorbike'}
+									type="text"
+									className="border-0 p-1 ml-1"
+									style={{ marginLeft: '12px', width: '99%' }}
+									disabled
 								/>
 							</Form.Group>
 
@@ -198,7 +214,7 @@ export default function DetailLocate() {
 								pickup: sourceCoor,
 								destination: targetCoor,
 								price: '100000',
-								vehicleType: 'motorbike',
+								vehicleType: detail?.vehicleType || 'motorbike',
 								paymentMethod: 'cash',
 							})
 						}

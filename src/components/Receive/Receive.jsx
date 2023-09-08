@@ -165,6 +165,7 @@ function Receive() {
 				pickupAddress: sourceAddress,
 				destAddress: targetAddress,
 				time: new Date(),
+				vehicleType: type,
 			});
 		} else {
 			toast.warn('Please fill all the field!');
@@ -179,8 +180,6 @@ function Receive() {
 			toast.warn('Please fill all the field!');
 		}
 	};
-
-	console.log(history);
 
 	return (
 		<>
