@@ -69,3 +69,21 @@ export const createBooking = async (data) => {
 	const result = await axios.post('booking/createPosition', data);
 	return result.data;
 };
+
+export const getAllStatus = async () => {
+	const result = await axios.get('/booking/getBookings');
+	const data = result.data?.data?.map((item, index) => {
+		return {
+			id: index + 1,
+			time: '8:00AM',
+			phoneNumber: item.phoneNumber,
+			status:
+				item.status == 'notfound'
+					? 'Hủy bỏ'
+					: item.status == 'transiting'
+					? 'Đang tiến hành'
+					: 'Hoàn thành',
+		};
+	});
+	return data;
+};

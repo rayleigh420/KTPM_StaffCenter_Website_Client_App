@@ -4,7 +4,9 @@ import { FaClock, FaCheckDouble, FaCheckSquare, FaRss, FaTimesCircle } from 'rea
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import './Status.css'; 
+import './Status.css';
+import { useQuery } from '@tanstack/react-query';
+import { getAllStatus } from '../../apis/bookAPI';
 
 export default function Status() {
 	const [data, setData] = useState([
@@ -15,15 +17,21 @@ export default function Status() {
 		{ id: 5, time: '09:30 PM', phoneNumber: '+84 111 222 333', status: 'Hoàn thành' },
 	]);
 
-    const statusVariants = {
-        'Hủy bỏ': 'danger',
-        'Hoàn thành': 'success',
-        'Đang tiến hành': 'warning'
-    }
+	const { data: status } = useQuery({
+		queryKey: ['status'],
+		queryFn: () => getAllStatus(),
+	});
 
+	const statusVariants = {
+		'Hủy bỏ': 'danger',
+		'Hoàn thành': 'success',
+		'Đang tiến hành': 'warning',
+	};
+
+	console.log(status);
 	return (
 		<>
-			<Container className="text-center" style={{marginTop: '80px'}} >
+			<Container className="text-center" style={{ marginTop: '80px' }}>
 				<Row>
 					<Col>
 						<Card
@@ -53,7 +61,7 @@ export default function Status() {
 						>
 							<FaRss className="spin-icon mx-2" size={30} />
 							<Card.Body>
-								<Card.Title>Đang thực hiện</Card.Title>
+								<Card.Title>Đang tiến hành</Card.Title>
 								<Card.Text>03 lượt</Card.Text>
 							</Card.Body>
 						</Card>
@@ -81,26 +89,32 @@ export default function Status() {
 
 				<Row className="mt-4">
 					<Col>
-						<Table  bordered hover>
+						<Table bordered hover>
 							<thead>
 								<tr>
-									<th className='bg-gray'>STT</th>
-									<th className='bg-gray'>Thời gian</th>
-									<th className='bg-gray'>Khách hàng</th>
-									<th className='bg-gray'>Trạng thái</th>
+									<th className="bg-gray">STT</th>
+									<th className="bg-gray">Thời gian</th>
+									<th className="bg-gray">Khách hàng</th>
+									<th className="bg-gray">Trạng thái</th>
 								</tr>
 							</thead>
 							<tbody>
-								{data.map((row) => (
-									<tr key={row.id} className="align-center">
-										<td>{row.id}</td>
-										<td>{row.time}</td>
-										<td>{row.phoneNumber}</td>
-										<td>
-                                            <Button variant={statusVariants[row.status]} size='sm'>{row.status}</Button>
-										</td>
-									</tr>
-								))}
+								{status &&
+									status?.map((item) => (
+										<tr key={item?.id} className="align-center">
+											<td>{item?.id}</td>
+											<td>{item?.time}</td>
+											<td>{item?.phoneNumber}</td>
+											<td>
+												<Button
+													variant={statusVariants[item?.status]}
+													size="sm"
+												>
+													{item?.status}
+												</Button>
+											</td>
+										</tr>
+									))}
 							</tbody>
 						</Table>
 					</Col>

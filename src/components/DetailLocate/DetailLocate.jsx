@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Map from './Map';
 import { QueryClient, useMutation, useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { bookDirect, getDetailBookingPosition } from '../../apis/bookAPI';
 import { getCoordinates } from '../../apis/mapAPI';
 import { Modal } from 'antd';
@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 
 export default function DetailLocate() {
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	// const [phone, setPhone] = useState('');
 	// const [name, setName] = useState('');
@@ -81,6 +82,7 @@ export default function DetailLocate() {
 		onSuccess: (data) => {
 			console.log(data);
 			toast.success('Booking success!');
+			navigate('/locate');
 		},
 		onError: (err) => {
 			console.log(err);
