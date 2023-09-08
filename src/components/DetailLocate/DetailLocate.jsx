@@ -90,6 +90,8 @@ export default function DetailLocate() {
 		},
 	});
 
+	console.log(detail);
+
 	return (
 		<>
 			<Container style={{ marginTop: '120px' }}>
@@ -214,7 +216,7 @@ export default function DetailLocate() {
 								pickup: sourceCoor,
 								destination: targetCoor,
 								price: '100000',
-								vehicleType: detail?.vehicleType || 'motorbike',
+								vehicleType: detail?.vehicleType,
 								paymentMethod: 'cash',
 							})
 						}

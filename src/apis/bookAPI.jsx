@@ -50,7 +50,7 @@ export const getAllWaiting = async () => {
 			phoneNumber: item.phoneNumber,
 			status: (
 				<Button>
-					<Link to={`/detailLocate/${item.bookingPositionId}`}>Kiem tra</Link>
+					<Link to={`/detailLocate/${item.bookingPositionsId}`}>Kiem tra</Link>
 				</Button>
 			),
 		};

@@ -157,7 +157,7 @@ function Receive() {
 	};
 
 	const handleClickNext = () => {
-		console.log(phone, name, sourceAddress, targetAddress);
+		console.log(phone, name, sourceAddress, targetAddress, type);
 		if (phone != '' && name != '' && sourceAddress != '' && targetAddress != '' && type != '') {
 			createBookingMutate.mutate({
 				phoneNumber: phone,
