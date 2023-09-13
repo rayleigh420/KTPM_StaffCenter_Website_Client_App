@@ -27,7 +27,7 @@ export const getHistory = async (phone) => {
 
 			history.push({
 				stt: i + 1,
-				time: new Date(),
+				time: item.timePickup,
 				pickupAddress: startAddress,
 				destinationAddress: endAddress,
 			});
