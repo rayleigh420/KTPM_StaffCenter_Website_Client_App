@@ -301,7 +301,7 @@ function Receive() {
 							</Form.Group> */}
 
 							<Form.Group
-								className="bg-light rounded p-3"
+								className="bg-light rounded p-3 mb-3"
 								style={{ paddingLeft: '12px' }}
 							>
 								<Form.Label className="fw-bold">Loại xe</Form.Label>
