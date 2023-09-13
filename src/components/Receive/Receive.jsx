@@ -181,6 +181,8 @@ function Receive() {
 		}
 	};
 
+	console.log(history);
+
 	return (
 		<>
 			{/* Erorr Center CSS not working !  */}

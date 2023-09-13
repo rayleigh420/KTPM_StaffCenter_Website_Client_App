@@ -12,6 +12,8 @@ export const getHistory = async (phone) => {
 	const result = await axios.post('booking/getLocations', phone);
 	const history = [];
 
+	console.log(result.data);
+
 	const getAllAddress = async () => {
 		let i = 0;
 		for (const item of result.data) {
@@ -46,7 +48,7 @@ export const getAllWaiting = async () => {
 	const waiting = result.data.data?.map((item, index) => {
 		return {
 			stt: index + 1,
-			time: '9:00 AM - 18/08/2023',
+			time: item.timeBooking,
 			phoneNumber: item.phoneNumber,
 			status: (
 				<Button>
@@ -72,6 +74,7 @@ export const createBooking = async (data) => {
 
 export const getAllStatus = async () => {
 	const result = await axios.get('/booking/getBookings');
+	console.log(result.data);
 	const data = result.data?.data?.map((item, index) => {
 		return {
 			id: index + 1,
