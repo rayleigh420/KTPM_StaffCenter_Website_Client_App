@@ -315,6 +315,19 @@ function Receive() {
 								</Form.Select>
 							</Form.Group>
 
+							<Form.Group
+								className="bg-light rounded p-3"
+								style={{ paddingLeft: '12px' }}
+							>
+								<Form.Label className="fw-bold">Thiết lập thời gian</Form.Label>
+								<Form.Select aria-label="Default select example">
+									<option value="">Chọn thời gian thực hiện</option>
+									<option value="now">Ngay bây giờ</option>
+									<option value="1h">1h sau</option>
+									<option value="2h">2h sau</option>
+								</Form.Select>
+							</Form.Group>
+
 							<div className="mt-5 d-flex justify-content-between">
 								<Button
 									type="primary"
