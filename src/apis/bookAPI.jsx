@@ -78,7 +78,7 @@ export const getAllStatus = async () => {
 	const data = result.data?.data?.map((item, index) => {
 		return {
 			id: index + 1,
-			time: '8:00AM',
+			time: item.timePickup,
 			phoneNumber: item.phoneNumber,
 			status:
 				item.status == 'notfound'
